@@ -73,8 +73,15 @@ export function createBracket(): Match[] {
         const f = r32Feed[order];
         feedsTo = `R16-${f.to}`;
         feedSlot = f.slot;
+      } else if (phase === "QF") {
+        // quartas → semifinais: cruzamento OFICIAL (não sequencial).
+        // Semi A (SF-0) = QF-0 + QF-2  (lado Alemanha/França/Espanha/Portugal)
+        // Semi B (SF-1) = QF-1 + QF-3  (lado Brasil/Argentina/Inglaterra)
+        // Mantém Brasil e França em metades opostas — só se encontram na final.
+        feedsTo = `SF-${order % 2}`;
+        feedSlot = order < 2 ? "home" : "away";
       } else {
-        // oitavas → quartas → semi → final: sequencial (order k → próxima k/2)
+        // oitavas → quartas e semi → final: sequencial (order k → próxima k/2)
         const next = nextPhaseOf(phase);
         if (next) {
           feedsTo = `${next}-${Math.floor(order / 2)}`;

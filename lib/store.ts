@@ -137,7 +137,7 @@ export const useBracket = create<BracketState>()(
     }),
     {
       name: "copa-2026-bracket",
-      version: 3, // v3: emparelhamento oficial das oitavas (não sequencial)
+      version: 4, // v4: cruzamento oficial quartas→semis (Brasil×França só na final)
       migrate: () => ({ matches: createBracket() }),
     },
   ),

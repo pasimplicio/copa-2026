@@ -33,7 +33,11 @@ Histórico: tentamos api-football (API-SPORTS) antes, mas o plano gratuito não 
 
 ### Como o chaveamento se propaga (importante)
 
-Da **oitava em diante** a árvore é sequencial: `order` k alimenta a próxima fase em `floor(k/2)`. **Mas as 16-avos → oitavas NÃO são sequenciais** — seguem o emparelhamento oficial FIFA, definido explicitamente em `R16_FROM_R32` (ex.: jogo 76/Brasil cruza com jogo 78, não com 75). Por isso `REAL_R32` deve permanecer na ordem dos jogos 73→88 e qualquer mudança de chaveamento se faz em `R16_FROM_R32`, não na regra `floor(k/2)`.
+A árvore segue o **chaveamento oficial FIFA**, que NÃO é totalmente sequencial. Dois cruzamentos são customizados em `createBracket()`:
+- **16-avos → oitavas**: definido em `R16_FROM_R32` (ex.: jogo 76/Brasil cruza com 78, não com 75).
+- **quartas → semis**: `SF-0 = QF-0 + QF-2` e `SF-1 = QF-1 + QF-3` (regra `QF-k → SF-(k%2)`, slot `k<2`). Isso mantém Brasil (SF-1) e França (SF-0) em metades opostas — só se encontram na final, como na chave oficial.
+
+As demais ligações (oitavas→quartas, semi→final) são sequenciais (`floor(k/2)`). `REAL_R32` deve permanecer na ordem dos jogos 73→88; mudanças de chaveamento se fazem nesses mapas, não na regra sequencial.
 
 `propagate()` (em `store.ts`) empurra o vencedor para a partida seguinte e, se o time que entra mudou, **invalida em cascata** os resultados a jusante (`clearResult`). `simulateAll` percorre as fases em ordem para que os vencedores cascateiem corretamente.
 
