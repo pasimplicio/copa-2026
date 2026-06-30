@@ -41,4 +41,4 @@ O botão **Atualizar resultados** chama a rota server-side `app/api/results`, qu
 
 ---
 
-🤖 Desenvolvido com [Claude Code](https://claude.com/claude-code).
+Desenvolvido por **Paulo Simplicio** · feito com [Claude Code](https://claude.com/claude-code).
