@@ -1,26 +1,168 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #0b1020;
+  --bg-soft: #131a30;
+  --card: #1a2238;
+  --card-hover: #222c49;
+  --border: #2b3656;
+  --text: #eef2ff;
+  --muted: #94a3c4;
+  --accent: #22d3ee;
+  --gold: #fbbf24;
+  --win: #34d399;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-card: var(--card);
+  --color-card-hover: var(--card-hover);
+  --color-edge: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-gold: var(--gold);
+  --color-win: var(--win);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, #1b2546 0%, transparent 60%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* Scrollbar discreta para o bracket */
+.bracket-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.bracket-scroll::-webkit-scrollbar {
+  height: 10px;
+}
+.bracket-scroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+
+.fi {
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  background-size: cover;
+}
+
+/* Bandeira circular (estilo do chaveamento) */
+.flag-circle {
+  border-radius: 9999px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85), 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== Chaveamento em espelho (estilo Copa) ===== */
+.tree {
+  --line: rgba(255, 255, 255, 0.8);
+  --col-w: 116px;
+  --conn-w: 34px;
+}
+.tree .col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: var(--col-w);
+  position: relative;
+}
+.tree .cell {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tree .col-label {
+  position: absolute;
+  top: -26px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.tree .conn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: var(--conn-w);
+}
+.tree .cc {
+  position: relative;
+  flex: 1;
+}
+.tree .cc .h {
+  position: absolute;
+  height: 2.5px;
+  background: var(--line);
+}
+.tree .cc .v {
+  position: absolute;
+  width: 2.5px;
+  background: var(--line);
+}
+/* conector apontando para a direita ( } ) — lado esquerdo do bracket */
+.tree .cc-left .top {
+  left: 0;
+  right: 50%;
+  top: 25%;
+}
+.tree .cc-left .bot {
+  left: 0;
+  right: 50%;
+  top: 75%;
+}
+.tree .cc-left .v {
+  right: 50%;
+  top: 25%;
+  height: 50%;
+}
+.tree .cc-left .out {
+  left: 50%;
+  right: 0;
+  top: 50%;
+}
+/* conector apontando para a esquerda ( { ) — lado direito do bracket */
+.tree .cc-right .top {
+  right: 0;
+  left: 50%;
+  top: 25%;
+}
+.tree .cc-right .bot {
+  right: 0;
+  left: 50%;
+  top: 75%;
+}
+.tree .cc-right .v {
+  left: 50%;
+  top: 25%;
+  height: 50%;
+}
+.tree .cc-right .out {
+  right: 50%;
+  left: 0;
+  top: 50%;
+}
+/* conector central reto (semifinal → final) */
+.tree .cc-mid .line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--line);
 }
