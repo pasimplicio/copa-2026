@@ -69,15 +69,18 @@ export function Toolbar({
       </div>
 
       <div className="relative border-t border-edge/60 bg-bg-soft/50 px-4 py-1.5 text-center text-[11px] text-muted">
-        {status ?? (
-          <span>
-            <span className="text-accent">👆</span> Selecione a partida para
-            simular
-          </span>
-        )}
-        <span className="absolute right-4 top-1/2 hidden -translate-y-1/2 text-[11px] text-muted/80 sm:block">
-          Desenvolvido por <span className="font-semibold text-text/80">Paulo Simplicio</span>
-        </span>
+        <div>
+          {status ?? (
+            <span>
+              <span className="text-accent">👆</span> Selecione a partida para
+              simular
+            </span>
+          )}
+        </div>
+        <div className="mt-0.5 text-[11px] text-muted/80 sm:mt-0 sm:absolute sm:right-4 sm:top-1/2 sm:-translate-y-1/2">
+          Desenvolvido por{" "}
+          <span className="font-semibold text-text/80">Paulo Simplicio</span>
+        </div>
       </div>
     </header>
   );
