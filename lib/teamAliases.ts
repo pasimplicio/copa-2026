@@ -29,6 +29,7 @@ const ALIASES: Record<string, string> = {
   croatia: "cro",
   sweden: "swe",
   bosniaandherzegovina: "bih",
+  bosniaherzegovina: "bih", // "Bosnia & Herzegovina" (o "&" some ao normalizar)
   bosnia: "bih",
   denmark: "den",
   switzerland: "sui",
